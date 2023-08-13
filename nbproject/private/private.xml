@@ -4,7 +4,31 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/conifig_email/EmailConfigUtility.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/controller/ControllerFactory.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/dto/SuperDTO.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/enums/ValidateTypes.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/SuperStore.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/enums/ControllerTypes.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/enums/StoreTypes.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/ChannelObserver.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/Main.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/enums/ObserverTypes.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/UserStore.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/ChannelSubject.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/view/Login.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/json/CommonResponse.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/SubscriptionStore.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/dto/UserDTO.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/controller/UserController.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/dto/SubscribeUserDTO.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/impl/ChannelProvider.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/controller/SubcriptionController.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/view/viewPost.java</file>
             <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/conifig_email/Emailutility.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/dto/SubscriptionDTO.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/util/Validator.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/store/dto/PostDTO.java</file>
+            <file>file:/F:/Bolton%20Apps/oom-socialApp-main/src/swlc/bolton/oom/socialapp/main/controller/SuperController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,10 +5,16 @@
  */
 package swlc.bolton.oom.socialapp.main.view;
 
+import javax.swing.JOptionPane;
+import swlc.bolton.oom.socialapp.main.constants.Constants;
 import swlc.bolton.oom.socialapp.main.controller.ControllerFactory;
 import swlc.bolton.oom.socialapp.main.controller.UserController;
+import swlc.bolton.oom.socialapp.main.enums.ValidateTypes;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
 import swlc.bolton.oom.socialapp.main.store.impl.ChannelProvider;
 import swlc.bolton.oom.socialapp.main.store.impl.UserStore;
+import swlc.bolton.oom.socialapp.main.store.json.CommonResponse;
+import swlc.bolton.oom.socialapp.main.util.Validator;
 
 /**
  *
@@ -128,7 +134,26 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
+        String emailAddress = txtEmail.getText();
+        String password = txtPassword.getText();
+
+        if (!emailAddress.trim().equals("") && !password.equals("")) {
+            if (!Validator.regexHandler(emailAddress.trim(), ValidateTypes.EMAIL)) {
+                JOptionPane.showMessageDialog(this, Constants.WARN_EMAIL_TXT);
+                return;
+            }
+
+            //            
+            CommonResponse loginResponse = UserController.loginHandler(new UserDTO(emailAddress.trim(), password));
+
+            if (loginResponse.isSuccess()) {
+                openHomeScreenHandler((UserDTO) loginResponse.getBody());
+            } else {
+                JOptionPane.showMessageDialog(this, Constants.ENTERED_EMAIL_OR_PASSWORD_INVALID);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, Constants.WARN_ALL_INPUT_REQ);
+        }
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -140,7 +165,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        // TODO add your handling code here:
+        new createAccount().setVisible(true);
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**

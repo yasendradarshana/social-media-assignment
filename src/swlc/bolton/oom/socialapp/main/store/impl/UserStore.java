@@ -60,7 +60,8 @@ public class UserStore implements SuperStore<UserDTO>{
                     if (availableObj != null) {
                         registeredUserList.remove(availableObj);
                         return new CommonResponse(true, availableObj);
-                    }   break;
+                    }   
+                    break;
                 case RETRIEVE:
                     if (availableObj != null) return new CommonResponse(true, availableObj);
                     break;

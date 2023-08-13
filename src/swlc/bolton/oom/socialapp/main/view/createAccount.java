@@ -5,6 +5,14 @@
  */
 package swlc.bolton.oom.socialapp.main.view;
 
+import javax.swing.JOptionPane;
+import swlc.bolton.oom.socialapp.main.constants.Constants;
+import swlc.bolton.oom.socialapp.main.controller.UserController;
+import swlc.bolton.oom.socialapp.main.enums.ValidateTypes;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
+import swlc.bolton.oom.socialapp.main.store.json.CommonResponse;
+import swlc.bolton.oom.socialapp.main.util.Validator;
+
 /**
  *
  * @author Yasendra Darshana
@@ -30,12 +38,12 @@ public class createAccount extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,43 +59,43 @@ public class createAccount extends javax.swing.JFrame {
         jLabel2.setText("Name");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 74, 31));
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 231, 31));
+        jPanel1.add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 231, 31));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 231, 31));
+        jPanel1.add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 231, 31));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel4.setText("Email ");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 31));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 255));
-        jButton2.setText("Register");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnRegister.setBackground(new java.awt.Color(0, 153, 255));
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 80, 30));
+        jPanel1.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 80, 30));
 
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel5.setText("Password ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 100, 31));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 231, 31));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 231, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,21 +111,81 @@ public class createAccount extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNameActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        String name = txtName.getText();
+        String emailAddress = txtEmail.getText();
+        String password = txtPassword.getText();
+
+        if (!name.trim().equals("") && !emailAddress.trim().equals("") && !password.equals("")) {
+            if (!Validator.regexHandler(emailAddress.trim(), ValidateTypes.EMAIL)) {
+                JOptionPane.showMessageDialog(Register.this, Constants.WARN_EMAIL_TXT);
+                return;
+            }
+            if (!Validator.regexHandler(password, ValidateType StringName = txtName.getText();
+                 String email = txtEmail.getText();
+                 String password = txtPassword.getText();
+
+        if (!name.trim().equals("") && !email.trim().equals("") && !password.equals("")) {
+            if (!Validator.regexHandler(email.trim(), ValidateTypes.EMAIL)) {
+                JOptionPane.showMessageDialog(Register.this, Constants.WARN_EMAIL_TXT);
+                return;
+            }
+            if (!Validator.regexHandler(password, ValidateTypes.PASSWORD)) {
+                JOptionPane.showMessageDialog(Register.this, Constants.WARN_PASSWORD_TXT);
+                return;
+            }
+
+            CommonResponse regResponse = userController.registerHandler(new UserDTO(name.trim(), email.trim(), password));
+            if (regResponse.isSuccess()) {
+                
+                JOptionPane.showMessageDialog(Register.this, regResponse.getMessage(), "Success", JOptionPane.PLAIN_MESSAGE);
+
+                // sent registered mail
+                new Thread(() -> {
+                    sendEmailHandler(email, name);
+                }).start();
+
+            } else {
+                JOptionPane.showMessageDialog(Register.this, regResponse.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(Register.this, Constants.WARN_ALL_INPUT_REQ, "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        
+                JOptionPane.showMessageDialog(Register.this, Constants.WARN_PASSWORD_TXT);
+                return;
+            }
+
+            CommonResponse regResponse = UserController.registerHandler(new UserDTO(name.trim(), email.trim(), password));
+            if (regResponse.isSuccess()) {
+              
+                JOptionPane.showMessageDialog(Register.this, regResponse.getMessage(), "Success", JOptionPane.PLAIN_MESSAGE);
+
+                // sent registered mail
+                new Thread(() -> {
+                    sendEmailHandler(emailAddress, name);
+                }).start();
+
+            } else {
+                JOptionPane.showMessageDialog(Register.this, regResponse.getMessage());
+            }
+        } else {
+            JOptionPane.showMessageDialog(Register.this, Constants.WARN_ALL_INPUT_REQ, "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,20 +217,21 @@ public class createAccount extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createAccount().setVisible(true);
-            }
-        });
-    }
+                new createAccount().setVisible(true);        
+        }
+    }   
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

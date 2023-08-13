@@ -11,7 +11,7 @@ package swlc.bolton.oom.socialapp.main.store.dto;
  */
 public class UserDTO extends SuperDTO{
     
-     private long id = System.currentTimeMillis();
+    private long id = System.currentTimeMillis();
     private String name;
     private String email;
     private String password;
