@@ -60,6 +60,7 @@ public class createPost extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         lblTime = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,6 +106,14 @@ public class createPost extends javax.swing.JFrame {
         jLabel5.setText("20th July 2023");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 20));
 
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 253, 80, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,6 +143,16 @@ public class createPost extends javax.swing.JFrame {
         String formatDate = df.format(new Date());
         channelProvider.sendNotification(new PostDTO(userObject, formatDate, post.trim()), ObserverTypes.PUBLISHED_POST);        // TODO add your handling code here:
     }//GEN-LAST:event_btnPostMouseClicked
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+         int isClose = JOptionPane.showConfirmDialog(this, "Are you sure you want to close?", "Are you Sure?", JOptionPane.YES_NO_OPTION);
+               if (isClose == 0) {
+               this.dispose();
+            } else {
+                setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+         }
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +207,7 @@ public class createPost extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPost;
     private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;

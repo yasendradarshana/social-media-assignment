@@ -5,6 +5,14 @@
  */
 package swlc.bolton.oom.socialapp.main.view;
 
+import javax.swing.JOptionPane;
+import swlc.bolton.oom.socialapp.main.controller.ControllerFactory;
+import swlc.bolton.oom.socialapp.main.controller.SubcriptionController;
+import swlc.bolton.oom.socialapp.main.controller.UserController;
+import swlc.bolton.oom.socialapp.main.enums.ControllerTypes;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
+import swlc.bolton.oom.socialapp.main.store.impl.ChannelProvider;
+
 /**
  *
  * @author Yasendra Darshana
@@ -14,8 +22,31 @@ public class viewPost extends javax.swing.JFrame {
     /**
      * Creates new form viewPost
      */
-    public viewPost() {
+    
+    private UserDTO userObject;
+    private SubcriptionController subcriptionController;
+    private UserController userController;
+    private ChannelProvider channelProvider;
+    
+    
+    public viewPost(UserDTO userDto, ChannelProvider channelProvider) {
+        this.userObject=userDto;
+        this.channelProvider=channelProvider;
+        
+        
+        subcriptionController =(SubcriptionController) ControllerFactory.getInstance().getController(ControllerTypes.SUBCRIPTION);
+        userController=(UserController) ControllerFactory.getInstance().getController(ControllerTypes.USER);
+        
+        setUserDetails();
+    }
+    
+    public viewPost(){
+        
         initComponents();
+    }
+    
+    private void setUserDetails(){
+        lblUserName.setText(userObject.getName());
     }
 
     /**
@@ -29,22 +60,24 @@ public class viewPost extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtContent2 = new javax.swing.JTextField();
+        txtContent1 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jButton2 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        lblContact3 = new javax.swing.JLabel();
+        lblcontact2 = new javax.swing.JLabel();
+        lblContact2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        btnPost = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,9 +88,9 @@ public class viewPost extends javax.swing.JFrame {
         jLabel1.setText("Live Posting");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 210, 31));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Yasendra Darshana");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 120, 40));
+        lblUserName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lblUserName.setText("Yasendra Darshana");
+        jPanel1.add(lblUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 120, 40));
 
         jLabel4.setText("10:50 AM");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 60, 20));
@@ -68,25 +101,25 @@ public class viewPost extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("James: Good");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtContent2.setEditable(false);
+        txtContent2.setText("James: Good");
+        txtContent2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtContent2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 290, 100));
+        jPanel2.add(txtContent2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 290, 110));
 
-        jTextField2.setEditable(false);
-        jTextField2.setText("Isuru: Hi All! What's Up");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtContent1.setEditable(false);
+        txtContent1.setText("Isuru: Hi All! What's Up");
+        txtContent1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtContent1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 100));
+        jPanel2.add(txtContent1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 120));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 290, 200));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 290, 230));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -94,15 +127,6 @@ public class viewPost extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel3.setText("Active Contacts");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 100, 20));
-
-        jTextField3.setEditable(false);
-        jTextField3.setText("Sunil Perera");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 140, -1));
         jPanel3.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-330, 0, 470, 20));
 
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
@@ -114,15 +138,6 @@ public class viewPost extends javax.swing.JFrame {
         });
         jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 80, 20));
 
-        jTextField4.setEditable(false);
-        jTextField4.setText("Isuru Maduranga");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 140, -1));
-
         jButton3.setBackground(new java.awt.Color(0, 153, 255));
         jButton3.setText("Subscribe");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -131,15 +146,6 @@ public class viewPost extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 80, 20));
-
-        jTextField5.setEditable(false);
-        jTextField5.setText("James Fernando");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 140, -1));
 
         jButton4.setBackground(new java.awt.Color(0, 153, 255));
         jButton4.setText("Subscribe");
@@ -150,8 +156,39 @@ public class viewPost extends javax.swing.JFrame {
         });
         jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 80, 20));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 250));
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnLogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
+
+        lblContact3.setBackground(new java.awt.Color(0, 204, 51));
+        lblContact3.setText("Sirl Janz");
+        lblContact3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(lblContact3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 140, 20));
+
+        lblcontact2.setBackground(new java.awt.Color(0, 204, 51));
+        lblcontact2.setText("Sirl Janz");
+        lblcontact2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(lblcontact2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 140, 20));
+
+        lblContact2.setBackground(new java.awt.Color(0, 204, 51));
+        lblContact2.setText("Sirl Janz");
+        lblContact2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.add(lblContact2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 140, 20));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 320));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 460, -1));
+
+        btnPost.setText("Post");
+        btnPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, 120, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -161,43 +198,44 @@ public class viewPost extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtContent2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContent2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtContent2ActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtContent1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContent1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtContent1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        int isClose = JOptionPane.showConfirmDialog(this, "Are you sure you want to Logout?", "Are you Sure?", JOptionPane.YES_NO_OPTION);
+        if (isClose == 0) {
+            this.dispose();
+        } else {
+            setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+                // TODO add your handling code here:
+    }//GEN-LAST:event_btnPostActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,11 +273,12 @@ public class viewPost extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnPost;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -248,10 +287,16 @@ public class viewPost extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lblContact2;
+    private javax.swing.JLabel lblContact3;
+    private javax.swing.JLabel lblUserName;
+    private javax.swing.JLabel lblcontact2;
+    private javax.swing.JTextField txtContent1;
+    private javax.swing.JTextField txtContent2;
     // End of variables declaration//GEN-END:variables
+  
+    public UserDTO getLoggedUserObj() {
+        return userObject;
+    }
+
 }

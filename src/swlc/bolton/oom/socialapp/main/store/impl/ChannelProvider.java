@@ -5,10 +5,15 @@
  */
 package swlc.bolton.oom.socialapp.main.store.impl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import swlc.bolton.oom.socialapp.main.controller.SubcriptionController;
 import swlc.bolton.oom.socialapp.main.enums.ObserverTypes;
+import swlc.bolton.oom.socialapp.main.store.dto.PostDTO;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
+import swlc.bolton.oom.socialapp.main.store.json.CommonResponse;
+import swlc.bolton.oom.socialapp.main.view.viewPost;
 
 /**
  *
@@ -37,7 +42,7 @@ public class ChannelProvider implements ChannelSubject<Object>{
     @Override
     public void sendNotification(Object obj, ObserverTypes observerType) {
         for (ChannelObserver observer : setOfChannelObservers) {
-            Home home = (Home) observer;
+            viewPost home = (viewPost) observer;
 
             switch (observerType) {
                 case CREATE_ACCOUNT:
