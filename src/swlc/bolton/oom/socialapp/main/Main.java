@@ -4,18 +4,20 @@
  * and open the template in the editor.
  */
 package swlc.bolton.oom.socialapp.main;
+import swlc.bolton.oom.socialapp.main.view.Login;
 
 /**
  *
  * @author Yasendra Darshana
  */
-public class OomSocialAppMain {
+public class Main {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Login loginPage=new Login();
+        loginPage.setVisible(true);
     }
     
 }
