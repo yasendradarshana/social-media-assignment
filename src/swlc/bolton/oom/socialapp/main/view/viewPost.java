@@ -12,6 +12,7 @@ import swlc.bolton.oom.socialapp.main.controller.UserController;
 import swlc.bolton.oom.socialapp.main.enums.ControllerTypes;
 import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
 import swlc.bolton.oom.socialapp.main.store.impl.ChannelProvider;
+import swlc.bolton.oom.socialapp.main.store.json.CommonResponse;
 
 /**
  *
@@ -76,6 +77,7 @@ public class viewPost extends javax.swing.JFrame {
         lblContact3 = new javax.swing.JLabel();
         lblcontact2 = new javax.swing.JLabel();
         lblContact2 = new javax.swing.JLabel();
+        lblSubCount = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         btnPost = new javax.swing.JButton();
 
@@ -179,6 +181,9 @@ public class viewPost extends javax.swing.JFrame {
         lblContact2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.add(lblContact2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 140, 20));
 
+        lblSubCount.setText("Subscriber Count");
+        jPanel3.add(lblSubCount, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 110, 40));
+
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 160, 320));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 460, -1));
 
@@ -265,6 +270,24 @@ public class viewPost extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(viewPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(viewPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(viewPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(viewPost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new viewPost().setVisible(true);
@@ -289,6 +312,7 @@ public class viewPost extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblContact2;
     private javax.swing.JLabel lblContact3;
+    private javax.swing.JLabel lblSubCount;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JLabel lblcontact2;
     private javax.swing.JTextField txtContent1;
@@ -299,4 +323,16 @@ public class viewPost extends javax.swing.JFrame {
         return userObject;
     }
 
+    private void setSessionDetails() {
+        lblUserName.setText(userObject.getName());
+    }
+      
+     public void displaySubscriberCountHandler() {
+         CommonResponse resp = subcriptionController.getSubscribedCountHandler(userObject.getId());
+        if (resp.isSuccess()) {
+            long subsCount = (long) resp.getBody();
+            lblSubCount.setText(subsCount > 0 ? subsCount + " subscriber(s)" : "");
+        }
+    }
+      
 }
