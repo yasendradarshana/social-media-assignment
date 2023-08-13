@@ -5,17 +5,39 @@
  */
 package swlc.bolton.oom.socialapp.main.view;
 
+import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import swlc.bolton.oom.socialapp.main.constants.Constants;
+import swlc.bolton.oom.socialapp.main.enums.ObserverTypes;
+import swlc.bolton.oom.socialapp.main.store.dto.PostDTO;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
+import swlc.bolton.oom.socialapp.main.store.impl.ChannelProvider;
+
 /**
  *
  * @author Yasendra Darshana
  */
 public class createPost extends javax.swing.JFrame {
 
+    private UserDTO userObject;
+    private ChannelProvider channelProvider;
     /**
      * Creates new form newPost
      */
     public createPost() {
+   
         initComponents();
+        showTime();
+    }
+    
+    public createPost(UserDTO userDto, ChannelProvider channelProvider){
+        this.channelProvider = channelProvider;
+        this.userObject=userDto;
     }
 
     /**
@@ -31,12 +53,12 @@ public class createPost extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        txtCreatePost = new javax.swing.JTextArea();
+        btnPost = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 0), new java.awt.Dimension(10, 32767));
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        lblTime = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -51,15 +73,25 @@ public class createPost extends javax.swing.JFrame {
         jLabel2.setText("Yasendra Darshana");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 120, 40));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtCreatePost.setColumns(20);
+        txtCreatePost.setRows(5);
+        jScrollPane1.setViewportView(txtCreatePost);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 450, 140));
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 255));
-        jButton2.setText("Post");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 80, 30));
+        btnPost.setBackground(new java.awt.Color(0, 153, 255));
+        btnPost.setText("Post");
+        btnPost.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPostMouseClicked(evt);
+            }
+        });
+        btnPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPostActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnPost, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 80, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jLabel3.setText("What's on your mind?");
@@ -67,8 +99,8 @@ public class createPost extends javax.swing.JFrame {
         jPanel1.add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 480, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 470, 20));
 
-        jLabel4.setText("10:50 AM");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 60, 20));
+        lblTime.setText("10:50 AM");
+        jPanel1.add(lblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 60, 20));
 
         jLabel5.setText("20th July 2023");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 100, 20));
@@ -86,6 +118,22 @@ public class createPost extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPostActionPerformed
+
+    private void btnPostMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPostMouseClicked
+        String post = txtCreatePost.getText();
+            if (post.trim().equals("")) {
+                JOptionPane.showMessageDialog(this, Constants.WARN_POST_INPUT_REQ);
+            return;
+        }
+        txtCreatePost.setText("");
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy  hh:mm a");
+        String formatDate = df.format(new Date());
+        channelProvider.sendNotification(new PostDTO(userObject, formatDate, post.trim()), ObserverTypes.PUBLISHED_POST);        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPostMouseClicked
 
     /**
      * @param args the command line arguments
@@ -122,18 +170,34 @@ public class createPost extends javax.swing.JFrame {
             }
         });
     }
+    
+        private void showTime() {
+            Timer currentTime = new Timer(100, new ActionListener() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Date d = new Date();
+                Calendar cal = new GregorianCalendar();
+                Date d1 = new Date(); //java.util.Date ->get Current date and time
+                SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy  hh:mm a");
+                String formatDate = df.format(d1);
+                lblTime.setText(formatDate);
+            }
+        });
+        currentTime.start();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPost;
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lblTime;
+    private javax.swing.JTextArea txtCreatePost;
     // End of variables declaration//GEN-END:variables
 }

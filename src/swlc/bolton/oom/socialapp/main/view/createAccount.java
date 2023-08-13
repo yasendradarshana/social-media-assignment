@@ -219,7 +219,7 @@ public class createAccount extends javax.swing.JFrame {
             public void run() {
                 new createAccount().setVisible(true);        
         }
-    }   
+    }  
 }
 
 
@@ -234,4 +234,19 @@ public class createAccount extends javax.swing.JFrame {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void sendEmailHandler(String email, String name) {
+        System.out.println("Please wait to send mail...");
+        try {
+            Properties smtpProperties = emailConfigUtil.loadProperties();
+            EmailUtility.sendEmail(smtpProperties, email, EMAIL_REG_SUBJECT, String.format(EMAIL_REG_BODY, name), null);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+//            JOptionPane.showMessageDialog(this, "Error while sending the e-mail: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
 }
+
