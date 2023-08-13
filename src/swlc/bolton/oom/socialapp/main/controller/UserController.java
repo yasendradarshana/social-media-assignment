@@ -5,6 +5,11 @@
  */
 package swlc.bolton.oom.socialapp.main.controller;
 
+import swlc.bolton.oom.socialapp.main.store.dto.SubscriptionDTO;
+import swlc.bolton.oom.socialapp.main.store.dto.UserDTO;
+import swlc.bolton.oom.socialapp.main.store.impl.UserStore;
+import swlc.bolton.oom.socialapp.main.store.json.CommonResponse;
+
 /**
  *
  * @author Yasendra Darshana
@@ -12,11 +17,11 @@ package swlc.bolton.oom.socialapp.main.controller;
 public class UserController implements SuperController{
     
     private final UserStore userStore;
-    private final SubscriptionController subscriptionController;
+    private final SubcriptionController subscriptionController;
 
     public UserController() {
         userStore = new UserStore();
-        subscriptionController = new SubscriptionController();
+        subscriptionController = new SubcriptionController();
     }
     
 
@@ -43,4 +48,4 @@ public class UserController implements SuperController{
         return release;
     }
 }
-}
+

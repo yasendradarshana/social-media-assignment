@@ -5,6 +5,8 @@
  */
 package swlc.bolton.oom.socialapp.main.controller;
 
+import swlc.bolton.oom.socialapp.main.enums.ControllerTypes;
+
 /**
  *
  * @author Yasendra Darshana
@@ -25,12 +27,12 @@ public class ControllerFactory {
         switch (controller) {
             case USER:
                 return new UserController();
-            case SUBSCRIPTION:
-                return new SubscriptionController();
+            case SUBCRIPTION:
+                return new SubcriptionController();
          
             default:
                 return null;
         }
     }
 }
-}
+
